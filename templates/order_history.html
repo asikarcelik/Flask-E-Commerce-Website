@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sipariş Geçmişim</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .order-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .order-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        .product-details {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center">Sipariş Geçmişim</h2>
+        <div class="accordion" id="orderAccordion">
+            {% for order in orders %}
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading{{ loop.index }}">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}" aria-expanded="true" aria-controls="collapse{{ loop.index }}">
+                        <strong>Sipariş No: {{ loop.index }}</strong> - 
+                        Toplam Fiyat: <span class="text-success">{{ order.total_price }} TL</span> - 
+                        Durum: 
+                        <span class="badge {% if order.payment_status == 'Pending' %}bg-warning text-dark{% elif order.payment_status == 'Completed' %}bg-success{% elif order.payment_status == 'Approved' %}bg-info{% elif order.payment_status == 'Shipped' %}bg-primary{% endif %}">
+                            {{ order.payment_status == 'Pending' and 'Beklemede' or order.payment_status == 'Completed' and 'Tamamlandı' or order.payment_status == 'Approved' and 'Onaylandı' or order.payment_status == 'Shipped' and 'Kargoya Verildi'}}
+                        </span> 
+                        - Tarih: <span>{{ order.created_at.strftime('%Y-%m-%d') }}</span>
+                    </button>
+                </h2>
+                <div id="collapse{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="heading{{ loop.index }}" data-bs-parent="#orderAccordion">
+                    <div class="accordion-body">
+                        <h5 class="mb-3">Ürünler:</h5>
+                        <ul class="list-unstyled">
+                            {% for cart_item, product in order.cart_items %}
+                            <li class="order-item d-flex align-items-center mb-2">
+                                <!-- Ürün Resmi -->
+                                <img src="{{ product.image_url }}" alt="{{ product.name }}" class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover; margin-right: 15px;">
+                                <!-- Ürün Detayları -->
+                                <div>
+                                    <strong> {{ product.name }} </strong><br>
+                                    Adet: {{ cart_item.quantity }}<br>
+                                    Fiyat: <span class="text-success">{{ product.price }} TL</span>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

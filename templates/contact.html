@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+<body>
+    {% include "/partials/navbar.html" %}
+    
+    <div class="container mt-5">
+        <h1 class="text-center">Bize Ulaşın</h1>
+        <p class="text-center">Herhangi bir sorunuz veya geri bildiriminiz varsa, lütfen aşağıdaki formu doldurun.</p>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h3>İletişim Bilgileri</h3>
+                <p><strong>Adres:</strong> Örnek Mah. No: 123, İstanbul, Türkiye</p>
+                <p><strong>Telefon:</strong> +90 123 456 78 90</p>
+                <p><strong>E-posta:</strong> info@ornek.com</p>
+                <h3 class="mt-4">İletişim Formu</h3>
+                
+                <form method="POST" action="{{ url_for('contact') }}">
+                    <div class="form-group">
+                        <label for="name">Adınız</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Adınızı girin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-posta</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="E-posta adresinizi girin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mesajınız</label>
+                        <textarea class="form-control" id="message" name="message" rows="4" placeholder="Mesajınızı buraya yazın" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Gönder</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>
+</body>
+</html>

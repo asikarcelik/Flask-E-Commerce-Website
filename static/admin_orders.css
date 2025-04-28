@@ -1,0 +1,47 @@
+.table th {
+    background-color: #007bff; /* Başlık arka plan rengi */
+    color: white;
+}
+.table td {
+    vertical-align: middle;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+}
+.table-hover tbody tr:hover {
+    background-color: #e9ecef;
+}
+.status-select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    appearance: none; /* Tarayıcı varsayılan stilini kaldır */
+    background-color: transparent; /* Arka planı şeffaf yap */
+}
+h3 {
+    color: #007bff; /* Başlık rengi */
+    border-bottom: 2px solid #007bff; /* Başlık altı çizgi */
+    padding-bottom: 5px;
+    margin-bottom: 20px; /* Başlık ile tablo arasında boşluk */
+}
+.table {
+    border: 2px solid #007bff; /* Tablo kenarlığı rengi */
+}
+/* Durum renkleri */
+.status-pending {
+    background-color: #ffeeba; /* Açık sarı */
+    color: black;
+}
+.status-approved {
+    background-color: #cce5ff; /* Açık mavi */
+    color: black;
+}
+.status-shipped {
+    background-color: #ffe5d0; /* Açık turuncu */
+    color: black;
+}
+.status-completed {
+    background-color: #d4edda; /* Açık yeşil */
+    color: black;
+}

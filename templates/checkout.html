@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ödeme Sayfası</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+<body>
+    {% include "/partials/navbar.html" %}
+    <div class="container mt-5">
+        <h2>Ödeme Bilgileri</h2>
+        <form method="POST" action="{{ url_for('checkout') }}">
+            <div class="form-group">
+                <label for="name">Ad</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="surname">Soyad</label>
+                <input type="text" class="form-control" id="surname" name="surname" required>
+            </div>
+            <div class="form-group">
+                <label for="gsm_number">GSM Numarası</label>
+                <input type="text" class="form-control" id="gsm_number" name="gsm_number" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-posta</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="identity_number">TC Kimlik Numarası</label>
+                <input type="text" class="form-control" id="identity_number" name="identity_number" required>
+            </div>
+            <div class="form-group">
+                <label for="card_number">Kart Numarası</label>
+                <input type="text" class="form-control" id="card_number" name="card_number" required>
+            </div>
+            <div class="form-group">
+                <label for="expiry_date">Son Kullanma Tarihi (MM/YY)</label>
+                <input type="text" class="form-control" id="expiry_date" name="expiry_date" required>
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" class="form-control" id="cvv" name="cvv" required>
+            </div>
+            <div class="form-group">
+                <label for="total_price">Toplam Fiyat</label>
+                <input type="text" class="form-control" id="total_price" name="total_price" value="{{ total_price }}" readonly>
+            </div>
+            <button type="submit" class="btn btn-primary">Ödeme Yap</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>
+</body>
+</html>

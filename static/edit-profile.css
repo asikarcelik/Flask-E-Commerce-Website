@@ -1,0 +1,35 @@
+.profile-edit-container {
+    padding: 30px 0;
+    background-color: #f8f9fa;
+    min-height: calc(100vh - 76px);
+}
+
+.profile-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.profile-card .card-header {
+    background-color: #ffc107;
+    border-radius: 15px 15px 0 0;
+    border: none;
+    padding: 20px;
+}
+
+.form-control:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+}
+
+.btn-outline-secondary {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    padding: 10px 30px;
+}
+
+.btn-update:hover {
+    opacity: 0.9;
+    color: white;
+}

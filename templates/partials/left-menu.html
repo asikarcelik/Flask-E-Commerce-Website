@@ -1,0 +1,38 @@
+<div class="wrapper">
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Menü</h3>
+        </div>
+        <ul class="list-unstyled components">
+            <li>
+                <a href="{{ url_for('best_sellers') }}" class="text-light text-decoration-none">En Çok Satanlar</a>
+            </li>
+            <li>
+                <a href="#kategoriSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-light text-decoration-none">Kategoriler</a>
+                <ul class="collapse list-unstyled" id="kategoriSubmenu">
+                    <li>
+                        <a href="{{ url_for('category_products', category_id=2) }}" class="text-light text-decoration-none">Kadın Giyim</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('category_products', category_id=3) }}" class="text-light text-decoration-none">Erkek Giyim</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('category_products', category_id=1) }}" class="text-light text-decoration-none">Teknoloji</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('category_products', category_id=4) }}" class="text-light text-decoration-none">Erkek Aksesuar</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('category_products', category_id=5) }}" class="text-light text-decoration-none">Kadın Aksesuar</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="/hakkimizda" class="text-light text-decoration-none">Hakkımızda</a>
+            </li>
+            <li>
+                <a href="{{ url_for('contact') }}" class="text-light text-decoration-none">İletişim</a>
+            </li>
+        </ul>
+    </nav>
+</div>

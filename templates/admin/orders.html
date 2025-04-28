@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siparişler</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/admin_orders.css">
+</head>
+<body>
+    {% extends "admin/base.html" %}
+
+    {% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Siparişler</h2>
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-primary">Anasayfaya Dön</a>
+    </div>
+
+    <!-- Beklemede Siparişler -->
+    <h3>Beklemede Siparişler</h3>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Kullanıcı ID</th>
+                <th>Toplam Fiyat</th>
+                <th>Durum</th>
+                <th>Tarih</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in pending_orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.user_id }}</td>
+                <td>{{ order.total_price }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('update_order', order_id=order.id) }}">
+                        <select name="payment_status" class="status-select status-pending" onchange="this.form.submit()">
+                            <option value="Pending" selected>Beklemede</option>
+                            <option value="Approved">Onaylandı</option>
+                            <option value="Shipped">Kargoya Verildi</option>
+                            <option value="Completed">Tamamlandı</option>
+                        </select>
+                    </form>
+                </td>
+                <td>{{ order.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Onaylanan Siparişler -->
+    <h3>Onaylanan Siparişler</h3>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Kullanıcı ID</th>
+                <th>Toplam Fiyat</th>
+                <th>Durum</th>
+                <th>Tarih</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in approved_orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.user_id }}</td>
+                <td>{{ order.total_price }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('update_order', order_id=order.id) }}">
+                        <select name="payment_status" class="status-select status-approved" onchange="this.form.submit()">
+                            <option value="Pending">Beklemede</option>
+                            <option value="Approved" selected>Onaylandı</option>
+                            <option value="Shipped">Kargoya Verildi</option>
+                            <option value="Completed">Tamamlandı</option>
+                        </select>
+                    </form>
+                </td>
+                <td>{{ order.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Kargoya Verilen Siparişler -->
+    <h3>Kargoya Verilen Siparişler</h3>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Kullanıcı ID</th>
+                <th>Toplam Fiyat</th>
+                <th>Durum</th>
+                <th>Tarih</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in shipped_orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.user_id }}</td>
+                <td>{{ order.total_price }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('update_order', order_id=order.id) }}">
+                        <select name="payment_status" class="status-select status-shipped" onchange="this.form.submit()">
+                            <option value="Pending">Beklemede</option>
+                            <option value="Approved">Onaylandı</option>
+                            <option value="Shipped" selected>Kargoya Verildi</option>
+                            <option value="Completed">Tamamlandı</option>
+                        </select>
+                    </form>
+                </td>
+                <td>{{ order.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Tamamlanan Siparişler -->
+    <h3>Tamamlanan Siparişler</h3>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Kullanıcı ID</th>
+                <th>Toplam Fiyat</th>
+                <th>Durum</th>
+                <th>Tarih</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in completed_orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.user_id }}</td>
+                <td>{{ order.total_price }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('update_order', order_id=order.id) }}">
+                        <select name="payment_status" class="status-select status-completed" onchange="this.form.submit()">
+                            <option value="Pending">Beklemede</option>
+                            <option value="Approved">Onaylandı</option>
+                            <option value="Shipped">Kargoya Verildi</option>
+                            <option value="Completed" selected>Tamamlandı</option>
+                        </select>
+                    </form>
+                </td>
+                <td>{{ order.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+</body>
+</html>

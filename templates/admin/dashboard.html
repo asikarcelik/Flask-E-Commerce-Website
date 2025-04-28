@@ -1,0 +1,90 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+<h2>Dashboard</h2>
+<div class="row mt-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h5 class="card-title">Toplam Ürün</h5>
+                <p class="card-text display-4">{{ products_count }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <h5 class="card-title">Toplam Kategori</h5>
+                <p class="card-text display-4">{{ categories_count }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <h5 class="card-title">Toplam Sipariş</h5>
+                <p class="card-text display-4">{{ orders_count }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <h5 class="card-title">Toplam Mesaj</h5>
+                <p class="card-text display-4">{{ messages_count }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Yeni İstatistik Kartları -->
+<div class="row mt-4">
+    <div class="col-md-3">
+        <div class="card bg-danger text-white">
+            <div class="card-body">
+                <h5 class="card-title">Tamamlanan Sipariş</h5>
+                <p class="card-text display-4">{{ completed_orders_count }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-secondary text-white">
+            <div class="card-body">
+                <h5 class="card-title">Onaylanan Sipariş</h5>
+                <p class="card-text display-4">{{ approved_orders_count }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-dark text-white">
+            <div class="card-body">
+                <h5 class="card-title">Kargoya Verilen Sipariş</h5>
+                <p class="card-text display-4">{{ shipped_orders_count }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <h5 class="card-title">Beklemede Sipariş</h5>
+                <p class="card-text display-4">{{ pending_orders_count }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Kategori Ürün Sayıları -->
+<div class="row mt-4">
+    {% set colors = ['bg-dark', 'bg-primary', 'bg-success', 'bg-danger', 'bg-info', 'bg-secondary', 'bg-dark', 'bg-warning'] %}
+    {% for category_name, product_count in category_product_counts.items() %}
+    <div class="col-md-3 mb-4">  <!-- Aralarına boşluk eklemek için mb-4 sınıfı eklendi -->
+        <div class="card {{ colors[loop.index0 % colors|length] }} text-white">  <!-- Farklı renkler için döngü -->
+            <div class="card-body">
+                <h5 class="card-title">{{ category_name }}</h5>  <!-- Kategori ismi gösteriliyor -->
+                <p class="card-text display-4">{{ product_count }} Ürün</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

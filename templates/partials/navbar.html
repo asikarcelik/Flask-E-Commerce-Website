@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-warning navbar sticky-top bg-body-tertiary">
+    <a class="navbar-brand" href="/">LOGO</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link" href="/">Anasayfa <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('category_products', category_id=2) }}">Kadın</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('category_products', category_id=3) }}">Erkek</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('category_products', category_id=5) }}">
+                    Aksesuar(KADIN)
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('category_products', category_id=4) }}">
+                    Aksesuar(ERKEK)
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('category_products', category_id=1) }}">
+                    Teknoloji
+                </a>
+            </li>
+        </ul>
+        
+        <a href="{{ url_for('cart') }}" class="btn btn-danger mr-2 position-relative">
+            <i class="bi bi-cart3"></i> Sepet 
+            {% if session.get('cart_count', 0) > 0 %}
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
+                    {{ session.get('cart_count', 0) }}
+                </span>
+            {% endif %}
+        </a>
+
+        <form class="form-inline my-2 my-lg-0" action="{{ url_for('search_products') }}" method="GET">
+            <input class="form-control mr-sm-2" type="search" name="query" placeholder="Ara" aria-label="Search">
+            <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Ara</button>
+        </form>
+
+        {% if session.get('user_id') %}
+            <div class="dropdown ml-2">
+                <button class="btn btn-outline-danger dropdown-toggle" type="button" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="bi bi-person-circle"></i> {{ session.get('username') }}
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                    <a class="dropdown-item" href="{{ url_for('profile') }}">
+                        <i class="bi bi-person"></i> Profilim
+                    </a>
+                    <a class="dropdown-item" href="{{ url_for('edit_profile') }}">
+                        <i class="bi bi-gear"></i> Profili Düzenle
+                    </a>
+                    <a class="dropdown-item" href="{{ url_for('notifications') }}">
+                        <i class="bi bi-bell"></i> Bildirimler
+                    </a>
+                    <a class="dropdown-item" href="{{ url_for('order_history') }}">
+                        <i class="bi bi-clock-history"></i> Sipariş Geçmişim
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-danger" href="{{ url_for('logout') }}">
+                        <i class="bi bi-box-arrow-right"></i> Çıkış Yap
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="ml-2">
+                <button class="btn btn-outline-danger mr-2" type="button" onclick="window.location.href='/login'">Giriş</button>
+                <button class="btn btn-outline-danger" type="button" onclick="window.location.href='/register'">Kayıt Ol</button>
+            </div>
+        {% endif %}
+    </div>
+</nav>

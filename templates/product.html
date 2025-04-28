@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }} - Ürün Detayları</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/static/product.css">
+</head>
+<body>
+    {% include "/partials/navbar.html" %}
+    <div class="container mt-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Anasayfa</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('category_products', category_id=product.category.id) }}">{{ product.category.name if product.category else 'Kategoriler' }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="text-center">
+                    <img src="{{ product.image_url }}" class="img-fluid product-image" alt="{{ product.name }}">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="product-details">
+                    <div class="product-category">
+                        <i class="bi bi-tag"></i> {{ product.category.name if product.category else 'Genel' }}
+                    </div>
+                    <h1 class="product-title">{{ product.name }}</h1>
+                    <div class="stock-info">
+                        <i class="bi bi-check-circle-fill"></i> Stokta Mevcut
+                    </div>
+                    <p class="product-description">{{ product.description }}</p>
+                    <div class="product-price">
+                        {{ "%.2f"|format(product.price) }} TL
+                    </div>
+                    <ul class="features-list">
+                        <li>Hızlı Teslimat</li>
+                        <li>Güvenli Alışveriş</li>
+                        <li>Kolay İade İmkanı</li>
+                    </ul> 
+                    <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn btn-danger btn-lg add-to-cart-btn">
+                        <i class="bi bi-cart-plus"></i> Sepete Ekle
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ürün Detayları Sekmesi -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <ul class="nav nav-tabs" id="productTabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab">
+                            Ürün Açıklaması
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="features-tab" data-toggle="tab" href="#features" role="tab">
+                            Özellikler
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="shipping-tab" data-toggle="tab" href="#shipping" role="tab">
+                            Kargo ve İade
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content p-4 border border-top-0" id="productTabsContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel">
+                        <p>{{ product.description }}</p>
+                    </div>
+                    <div class="tab-pane fade" id="features" role="tabpanel">
+                        <ul>
+                            <li>Özellik 1</li>
+                            <li>Özellik 2</li>
+                            <li>Özellik 3</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="shipping" role="tabpanel">
+                        <p>Kargo ve iade koşulları hakkında bilgiler...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
