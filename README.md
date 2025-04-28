@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Flask E-Ticaret Projesi
 
 Bu proje, Flask web framework'ü kullanılarak geliştirilmiş basit bir e-ticaret uygulamasıdır.
@@ -82,3 +83,6 @@ python main.py
 ## Lisans
 
 Bu proje MIT lisansı altında lisanslanmıştır. 
+=======
+# Flask-E-Commerce-Website
+>>>>>>> a0e34329543e21fbf22d4cfde9dbc613a9fad833
