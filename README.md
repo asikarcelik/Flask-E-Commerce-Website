@@ -84,5 +84,4 @@ python main.py
 
 Bu proje MIT lisansı altında lisanslanmıştır. 
 =======
-# Flask-E-Commerce-Website
->>>>>>> a0e34329543e21fbf22d4cfde9dbc613a9fad833
+
